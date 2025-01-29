@@ -1,6 +1,6 @@
 # Backtrader
 
-## 主程式 ([main.py](main.py))
+## 主程式 ([程式碼](main.py))
 
 ## Trader
 
