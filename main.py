@@ -1,9 +1,13 @@
 import pandas as pd
 from trader import run_backtest
 from strategy import SmaCross
+import os
 
 method = SmaCross
 method_name = method.__name__
+output_dir = f"./results/{method_name}"  # 存放結果的資料夾
+os.makedirs(output_dir, exist_ok=True)
+
 # 讀取股票清單
 stock_list_path = "stock_list.csv"
 stock_list = pd.read_csv(stock_list_path)
@@ -54,7 +58,8 @@ if results:
 
     # 動態生成 CSV 文件名
     file_name = f"{method_name} has average winrate {avg_win_rate:.2f}% from {start_date} to {end_date}.csv"
-    df.to_csv(file_name, index=False)
-    print(f"所有股票的回測結果已保存至 '{file_name}'")
+    file_path = os.path.join(output_dir, file_name)
+    df.to_csv(file_path, index=False)
+    print(f"所有股票的回測結果已保存至 '{file_path}'")
 else:
     print("沒有有效的回測結果，未生成 CSV 文件。")

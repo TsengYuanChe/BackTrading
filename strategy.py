@@ -1,15 +1,12 @@
 import backtrader as bt
+import indicators as INS
 
 class SmaCross(bt.Strategy):
-    params = (
-        ('sma_short', 10),  # 短期移動平均線
-        ('sma_long', 30),   # 長期移動平均線
-    )
 
     def __init__(self):
         # 定義短期與長期移動平均線
-        self.sma_short = bt.indicators.SimpleMovingAverage(self.data.close, period=self.params.sma_short)
-        self.sma_long = bt.indicators.SimpleMovingAverage(self.data.close, period=self.params.sma_long)
+        self.sma_short = INS.SMA10(self.data)
+        self.sma_long = INS.SMA30(self.data)
 
         # 初始化交易記錄變數
         self.trade_records = []  # 只記錄當前策略的交易記錄
