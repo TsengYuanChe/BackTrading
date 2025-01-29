@@ -1,5 +1,7 @@
 import backtrader as bt
 
+
+"""-------------------簡單移動平均線 (SMA)-------------------"""
 def SMA10(data):
     """ 計算 10 日簡單移動平均線 (SMA) """
     return bt.indicators.SimpleMovingAverage(data.close, period=10)
